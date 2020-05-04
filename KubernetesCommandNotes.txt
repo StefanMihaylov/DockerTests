@@ -1,0 +1,60 @@
+minikube start --vm-driver hyperv --hyperv-virtual-switch "Minikube Switch"
+
+minikube status
+kubectl cluster-info
+
+kubectl apply -f client-pod.yaml
+kubectl apply -f client-node-port.yaml
+kubectl get pods
+kubectl get services
+
+minikube ip
+kubectl describe pod client-pod
+
+kubectl delete -f client-pod.yaml
+kubectl get deployments
+kubectl get pods -o wide
+kubectl logs <име на обект>
+
+kubectl set image deployment/client-deployment client=<image>:v5
+
+eval $(minikube docker-env)
+
+kubectl delete deployment <client-deployment>
+
+kubectl apply -f k8s -> folder
+
+два конфига в един файл, разделени с --- (3 черти)
+
+kubectl get storageclass
+kubectl describe storageclass
+
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=qweqwe123
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+
+minikube addons enable ingress
+
+minikube dashboard
+
+docker run -it -v ${pwd}:/app ruby:2.3 sh
+gem install travis --no-rdoc --no-ri
+
+gem install travis -v 1.8.10
+
+travis login --com
+travis encrypt-file service-account.json -r USERNAME/REPO --com
+travis encrypt-file service-account.json -r StefanMihaylov/DockerComplexTest --com
+
+in google console:
+gcloud config set project k8s-test-276114
+gcloud config set compute/zone europe-west4-a
+gcloud container clusters get-credentials multi-cluster
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=qweqwe123
+
+helm install
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm install my-nginx stable/nginx-ingress --set rbac.create=true 

@@ -1,0 +1,54 @@
+= docker version
+= docker run <image> -> creating and running a container
+docker run hello-world 
+ = docker run <image> alternate_startup_command -> не се променя после
+docker run busybox echo hi there -> echo and ls part of busybox
+docker run busybox ls     -> list files in the directory
+= docker ps  -> all running containers installed
+docker ps --all  -> all containers installed
+= docker create <image>
+= docker start <container ID>
+docker start -a <container ID> -> start + print in the console
+= docker system prune -> delete all stopped containers
+= docker logs <container ID> -> история на конзолата
+= docker stop <container ID>
+= docker kill <container ID>
+docked run redis
+= docker exec -it <cID> <command>
+docker exec -it dd374ea3c342 redis-cli
+docker exec -it <cID> sh  -> console в контейнера, ctrl+D  за изход
+docker run -it busybox sh
+
+mkdir redis-image
+cd redis-image
+
+... create dockerfile
+# use an existing docker image as a base
+FROM alpine
+
+# Download and install a dependency
+RUN apk add --update redis
+
+# Tell the image what to do when starts in the container
+CMD ["redis-server"]
+
+= docker build  -t hades12/<image name>:latest . 
+
+= docker commit -c 'CMD ["redis-server"]' <cID> -> manual snapshot
+
+= docker run -p 8080:8080 <image ID>
+= WORKDIR /usr/app
+= COPY ./ ./
+
+= docker-compose up --build -> + rebuild
+= docker-compose up -d -> run in background
+= docker-compose down -> stop group
+= docker-compose ps -> current folder only
+
+= docker build -f Dockerfile.dev .
+= docker run -it -p 3000:3000 -v /app/node_modules -v ${pwd}:/app <cId>
+
+docker run -it a58ad9140f77 npm run test
+docker exec -it 2fd910f630c9 npm run test
+
+docker system df -v
