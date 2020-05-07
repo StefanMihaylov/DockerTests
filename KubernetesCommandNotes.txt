@@ -57,4 +57,23 @@ curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get
 chmod 700 get_helm.sh
 ./get_helm.sh
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-helm install my-nginx stable/nginx-ingress --set rbac.create=true 
+helm install my-nginx stable/nginx-ingress --set rbac.create=true
+
+-------
+kubectl run hw --image karthequian/helloworld:latest
+kubectl create -f blue.yaml -f green.yaml
+kubectl get deployments -o wide
+kubectl get pods --all-namespaces
+`kubectl delete pods --all` deletes all pods in the default namespace
+`kubectl delete pods -n cart --all` deletes all pods in the cart namespace
+`kubectl delete pods -l env=staging -n social` Deletes the pods in the social namespace that match the staging environment
+
+-----
+minikube ssh -> inner docker access
+docker system prune -a --volumes
+
+minikube addons list
+kubectl logs kibana -n kube-system
+minikube addons enable efk
+minikube addons open efk
+... jaeger, hotROD, ISTIO layer
